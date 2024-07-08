@@ -7,7 +7,7 @@ import { cookies } from 'next/headers';
 export const login = async (email: string, password: string): Promise<ActionType<AuthResponse>> => {
   try {
     const response = await api.post('/auth/login', { email, password });
-    const data = response.data;
+    const { data } = response;
     const token = data.accessToken;
 
     cookies().set('GilaToken', token);
@@ -16,3 +16,5 @@ export const login = async (email: string, password: string): Promise<ActionType
     return { success: false, message: '실패' };
   }
 };
+
+export default login;

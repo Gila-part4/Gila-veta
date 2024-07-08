@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-export const getAccessToken = async (): Promise<string | null> => {
+const getAccessToken = async (): Promise<string | null> => {
   const cookieStore = cookies();
   const accessToken = cookieStore.get('GilaToken');
 
@@ -10,3 +10,5 @@ export const getAccessToken = async (): Promise<string | null> => {
 
   return accessToken.value;
 };
+
+export default getAccessToken;
