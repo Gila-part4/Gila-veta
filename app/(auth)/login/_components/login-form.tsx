@@ -15,9 +15,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import login from '@/app/action/login';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { signIn } from 'next-auth/react';
 
 const formFields = [
   {
@@ -57,13 +57,18 @@ export default function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const { email, password } = values;
-    const action = await login(email, password);
-    if (!action.success) {
-      toast.error(action.message);
-      return;
+    // nextauth 메소드인 signIn으로 로그인, 해당 형식으로 작성해주시면 됩니다.
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false, // 로그인했을때 페이지 리다이렉션 제거
+    });
+    if (result?.ok) {
+      router.replace('/');
+    } else if (result?.error) {
+      // next-auth에서 던져준 에러를 받아서 사용함
+      toast.error(result?.error);
     }
-    toast.success(action.message);
-    router.replace('/');
   }
 
   return (

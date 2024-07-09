@@ -1,7 +1,7 @@
 'use server';
 
 import { api } from '@/lib/utils';
-import { AuthResponse } from '@/type/user';
+import { AuthResponse } from '@/types/user';
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
