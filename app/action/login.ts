@@ -2,9 +2,10 @@
 
 import { api } from '@/lib/utils';
 import { AuthResponse } from '@/type/user';
+import axios from 'axios';
 import { cookies } from 'next/headers';
 
-export const login = async (email: string, password: string): Promise<ActionType<AuthResponse>> => {
+const login = async (email: string, password: string): Promise<ActionType<AuthResponse>> => {
   try {
     const response = await api.post('/auth/login', { email, password });
     const { data } = response;
@@ -13,7 +14,10 @@ export const login = async (email: string, password: string): Promise<ActionType
     cookies().set('GilaToken', token);
     return { success: true, message: '성공' };
   } catch (error) {
-    return { success: false, message: '실패' };
+    if (axios.isAxiosError(error)) {
+      return { success: false, message: error.response?.data.message };
+    }
+    return { success: false, message: '로그인 실패' };
   }
 };
 

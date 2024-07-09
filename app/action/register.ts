@@ -2,6 +2,7 @@
 
 import { api } from '@/lib/utils';
 import { User } from '@/type/user';
+import axios from 'axios';
 
 interface Props {
   email: string;
@@ -9,21 +10,15 @@ interface Props {
   password: string;
 }
 
-interface CustomError extends Error {
-  response: {
-    data: {
-      message: string;
-    };
-  };
-}
-
 const register = async ({ email, nickname, password }: Props): Promise<ActionType<User>> => {
   try {
     await api.post('/users', { email, nickname, password });
     return { success: true, message: '성공' };
   } catch (error) {
-    const customError = error as CustomError;
-    return { success: false, message: customError.response.data.message };
+    if (axios.isAxiosError(error)) {
+      return { success: false, message: error.response?.data.message };
+    }
+    return { success: false, message: '회원가입 실패' };
   }
 };
 
