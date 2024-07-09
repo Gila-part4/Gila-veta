@@ -14,57 +14,62 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const FormSchema = z.object({
-  email: z
-    .string({ required_error: '이메일을 입력해 주세요' })
-    .email({ message: '이메일 형식으로 입력해 주세요' }),
-  password: z
-    .string({ required_error: '비밀번호를 입력해 주세요' })
-    .min(8, { message: '8자 이상 입력해 주세요' }),
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+const LoginFields = [
+  {
+    name: 'email',
+    label: '이메일',
+    placeholder: '이메일을 입력해 주세요',
+    type: 'text',
+  },
+  {
+    name: 'password',
+    label: '비밀번호',
+    placeholder: '비밀번호를 입력해 주세요',
+    type: 'password',
+  },
+];
+
+const LoginSchema = z.object({
+  email: z.string().email({ message: '유효한 이메일이 아닙니다' }),
+  password: z.string().regex(PASSWORD_REGEX, {
+    message: '비밀번호는 최소 8자 이상이며 소문자, 숫자, 특수문자를 포함해야 합니다',
+  }),
 });
 
 export default function LoginForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     console.log(values);
   }; // 팀 컨벤션은 handle이지만 라이브러리 코드와 구분을 위해 on으로 만들었습니다.
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>이메일</FormLabel>
-              <FormControl>
-                <Input placeholder="이메일을 입력해 주세요" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>비밀번호</FormLabel>
-              <FormControl>
-                <Input placeholder="비밀번호를 입력해 주세요" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {LoginFields.map(({ name, label, placeholder, type }) => (
+          <FormField
+            key={name}
+            control={form.control}
+            name={name as 'email' | 'password'}
+            render={({ field: loginField }) => (
+              <FormItem>
+                <FormLabel>{label}</FormLabel>
+                <FormControl>
+                  <Input type={type} placeholder={placeholder} {...loginField} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
         <Button type="submit">로그인</Button>
       </form>
     </Form>
