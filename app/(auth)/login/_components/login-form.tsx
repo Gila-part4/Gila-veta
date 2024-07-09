@@ -47,7 +47,7 @@ export default function LoginForm() {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
+    return values;
   }; // 팀 컨벤션은 handle이지만 라이브러리 코드와 구분을 위해 on으로 만들었습니다.
 
   return (
