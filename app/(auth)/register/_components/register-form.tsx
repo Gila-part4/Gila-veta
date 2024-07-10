@@ -101,7 +101,7 @@ export default function RegisterForm() {
             )}
           />
         ))}
-        <Button type="submit">로그인</Button>
+        <Button type="submit">회원가입</Button>
       </form>
     </Form>
   );
