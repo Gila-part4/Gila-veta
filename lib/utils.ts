@@ -19,6 +19,7 @@ try {
       // nextauth 서버 세션에 저장된 토큰값 가져오기
       const token = await getServerSession(authOption);
       if (token) {
+        // eslint-disable-next-line no-param-reassign
         config.headers.Authorization = `Bearer ${token.accessToken}`;
       }
       return config;
@@ -27,4 +28,6 @@ try {
       return Promise.reject(error);
     },
   );
-} catch (error) {}
+} catch (error) {
+  /* empty */
+}
