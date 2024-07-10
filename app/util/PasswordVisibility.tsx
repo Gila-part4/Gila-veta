@@ -22,7 +22,6 @@ function PasswordVisibility({ inputRef }: Props) {
       {showPassword ? <EyeOff color="#A4A1AA" size={24} /> : <Eye color="#A4A1AA" size={24} />}
     </button>
   );
-
 }
 
 export default PasswordVisibility;
