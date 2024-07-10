@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-function RegisterLink() {
+export default function RegisterLink() {
   return (
     <div className="text-gray-700 mt-8">
       회원이 아니신가요?&nbsp;
@@ -11,5 +11,3 @@ function RegisterLink() {
     </div>
   );
 }
-
-export default RegisterLink;

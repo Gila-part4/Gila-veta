@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-function LoginLink() {
+export default function LoginLink() {
   return (
     <div className="text-gray-700 mt-8">
       회원이신가요?&nbsp;
@@ -11,5 +11,3 @@ function LoginLink() {
     </div>
   );
 }
-
-export default LoginLink;
