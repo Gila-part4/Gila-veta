@@ -14,6 +14,8 @@ import { PASSWORD_REGEX } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import PasswordInput from '@/components/ui/password-input';
+import { useState } from 'react';
 
 const RegisterFields = [
   {
@@ -68,6 +70,7 @@ const UserEmailAndName = z.object({
 const RegisterSchema = z.intersection(UserEmailAndName, Password);
 
 export default function RegisterForm() {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -77,6 +80,10 @@ export default function RegisterForm() {
       confirm: '',
     },
   });
+
+  const handleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     return values;
@@ -90,11 +97,20 @@ export default function RegisterForm() {
             key={name}
             control={form.control}
             name={name as 'email' | 'nickname' | 'password' | 'confirm'}
-            render={({ field: loginField }) => (
+            render={({ field: registerField }) => (
               <FormItem>
                 <FormLabel>{label}</FormLabel>
                 <FormControl>
-                  <Input type={type} placeholder={placeholder} {...loginField} />
+                  {type === 'password' ? (
+                    <PasswordInput
+                      type={isVisible ? 'text' : 'password'}
+                      handleToggle={handleVisibility}
+                      placeholder={placeholder}
+                      {...registerField}
+                    />
+                  ) : (
+                    <Input type={type} placeholder={placeholder} {...registerField} />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>

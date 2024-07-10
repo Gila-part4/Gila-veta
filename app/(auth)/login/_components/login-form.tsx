@@ -14,6 +14,8 @@ import { PASSWORD_REGEX } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import PasswordInput from '@/components/ui/password-input';
+import { useState } from 'react';
 
 const LoginFields = [
   {
@@ -38,6 +40,7 @@ const LoginSchema = z.object({
 });
 
 export default function LoginForm() {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -45,6 +48,10 @@ export default function LoginForm() {
       password: '',
     },
   });
+
+  const handleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     return values;
@@ -62,7 +69,16 @@ export default function LoginForm() {
               <FormItem>
                 <FormLabel>{label}</FormLabel>
                 <FormControl>
-                  <Input type={type} placeholder={placeholder} {...loginField} />
+                  {type === 'password' ? (
+                    <PasswordInput
+                      type={isVisible ? 'text' : 'password'}
+                      handleToggle={handleVisibility}
+                      placeholder={placeholder}
+                      {...loginField}
+                    />
+                  ) : (
+                    <Input type={type} placeholder={placeholder} {...loginField} />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>
