@@ -16,6 +16,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import PasswordInput from '@/components/ui/password-input';
 import { useState } from 'react';
+import register from '@/app/action/register';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const RegisterFields = [
   {
@@ -80,13 +83,21 @@ export default function RegisterForm() {
       confirm: '',
     },
   });
+  const router = useRouter();
 
   const handleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    return values;
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    const { nickname, email, password } = values;
+    const action = await register({ email, nickname, password });
+    if (!action.success) {
+      toast.error(action.message);
+      return;
+    }
+    router.replace('/login');
+    toast.success(action.message);
   }; // 팀 컨벤션은 handle이지만 라이브러리 코드와 구분을 위해 on으로 만들었습니다.
 
   return (
