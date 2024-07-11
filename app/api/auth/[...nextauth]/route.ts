@@ -17,7 +17,7 @@ export const authOption = {
         try {
           const { email, password } = credentials;
           const response = await api.post('/auth/login', { email, password });
-          return response?.data;
+          return response.data;
         } catch (error) {
           // 해당 구간에서 에러 메세지를 받아서 다시 에러를 던져줘야 form에서 에러메세지 처리 가능
           if (axios.isAxiosError(error)) {

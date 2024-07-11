@@ -10,12 +10,15 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
 import { PASSWORD_REGEX } from '@/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import PasswordInput from '@/components/ui/password-input';
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const LoginFields = [
   {
@@ -48,13 +51,25 @@ export default function LoginForm() {
       password: '',
     },
   });
+  const router = useRouter();
 
   const handleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    return values;
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+    const { email, password } = values;
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false, // 로그인했을때 페이지 리다이렉션 제거
+    });
+    if (result?.ok) {
+      router.replace('/');
+    } else if (result?.error) {
+      // next-auth에서 던져준 에러를 받아서 사용함
+      toast.error(result?.error);
+    }
   }; // 팀 컨벤션은 handle이지만 라이브러리 코드와 구분을 위해 on으로 만들었습니다.
 
   return (
