@@ -3,12 +3,13 @@ import React from 'react';
 import LogoImg from '@/public/logo.png';
 
 interface Props {
-  size: number;
+  widthSize?: number;
+  heightSize?: number;
 }
 
-export default function Logo({ size }: Props) {
+export default function Logo({ widthSize, heightSize }: Props) {
   return (
-    <div className={`relative w-[${size}px]`}>
+    <div className={`relative w-[200px] h-[200px] w-[${widthSize}] h-[${heightSize}px]`}>
       <Image alt="logo" src={LogoImg} fill />
     </div>
   );
