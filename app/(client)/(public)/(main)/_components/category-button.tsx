@@ -10,8 +10,11 @@ export default function CategoryButton({ item }: { item: string }) {
   newSearchParams.set('category', item);
 
   return (
-    <Link href={createUrl('/', newSearchParams)}>
-      <div className="py-3 px-10 border text-center">{item}</div>
+    <Link
+      href={createUrl('/', newSearchParams)}
+      className={`py-3 px-10 border text-center ${searchParams.get('category') === item ? 'bg-slate-200' : 'bg-white'}`}
+    >
+      {item}
     </Link>
   );
 }
