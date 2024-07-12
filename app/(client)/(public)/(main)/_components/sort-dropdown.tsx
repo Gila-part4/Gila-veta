@@ -21,7 +21,7 @@ export default function SortDropDown() {
 
   const handleDropdown = (sortvalue: string) => {
     const newSortParams = new URLSearchParams(searchParams.toString());
-    if (searchParams.get('sort')) {
+    if (sortvalue === 'latest') {
       newSortParams.delete('sort');
     } else {
       newSortParams.set('sort', sortvalue);
@@ -38,7 +38,7 @@ export default function SortDropDown() {
         <DropdownMenuLabel>정렬 방법</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="new" onClick={() => handleDropdown('new')}>
+          <DropdownMenuRadioItem value="new" onClick={() => handleDropdown('latest')}>
             최신순
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="priceAsc" onClick={() => handleDropdown('priceAsc')}>
