@@ -8,11 +8,15 @@ interface Props {
 export default function ActivityList({ list }: Props) {
   return (
     <div className="flex items-center justify-center">
-      <div className="grid grid-cols-4 gap-6">
-        {list.map((item) => (
-          <ActivityCard activity={item} key={item.id} />
-        ))}
-      </div>
+      {list[0] ? (
+        <div className="grid grid-cols-4 gap-6">
+          {list.map((item) => (
+            <ActivityCard activity={item} key={item.id} />
+          ))}
+        </div>
+      ) : (
+        <div className="h-96 flex flex-col items-center justify-center">아무것도 없음</div>
+      )}
     </div>
   );
 }

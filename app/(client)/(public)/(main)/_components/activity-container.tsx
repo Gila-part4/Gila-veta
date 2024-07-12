@@ -19,7 +19,7 @@ export default async function ActicityContainer({ sort, category, page = '1' }: 
   });
   return (
     <div>
-      <p>{category || '전체'}</p>
+      <p className="font-bold text-4xl">🏃‍♂️‍➡️ {category || '전체'}</p>
       <CategoryContainer />
       <SortDropDown />
       <ActivityList list={activities} />

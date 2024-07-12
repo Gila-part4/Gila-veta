@@ -45,10 +45,10 @@ export default function SortDropDown() {
             리뷰 많은 순
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="priceAsc" onClick={() => handleDropdown('price_asc')}>
-            가격 높은 순
+            가격 낮은 순
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="priceDesc" onClick={() => handleDropdown('price_desc')}>
-            가격 낮은 순
+            가격 높은 순
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
