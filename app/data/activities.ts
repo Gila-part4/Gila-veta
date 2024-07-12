@@ -13,7 +13,7 @@ interface Props {
 export const getActivities = async ({
   category,
   sort,
-  page,
+  page = 1,
   size,
 }: Props): Promise<ActivityResponse> => {
   const query = `?method=offset${category ? `&category=${category}` : ''}${sort ? `&sort=${sort}` : ''}&page=${page}&size=${size}`;

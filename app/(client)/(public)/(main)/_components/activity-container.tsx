@@ -1,20 +1,27 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
+import { getActivities } from '@/app/data/activities';
 import ActivityPagination from './activity-pagination';
 import CategoryContainer from './category-container';
 import SortDropDown from './sort-dropdown';
 
-export default function ActicityContainer() {
-  const searchParams = useSearchParams();
-  const title = searchParams.get('category') || '전체';
+interface Props {
+  sort: string;
+  category: string;
+  page: string;
+}
 
+export default async function ActicityContainer({ sort, category, page = '1' }: Props) {
+  const { activities, totalCount } = await getActivities({
+    sort,
+    category,
+    page: Number(page),
+    size: 12,
+  });
   return (
     <div>
-      <p>{title}</p>
+      <p>{category}</p>
       <CategoryContainer />
       <SortDropDown />
-      <ActivityPagination totalCount={120} pageItemCount={12} />
+      <ActivityPagination totalCount={totalCount} pageItemCount={12} />
     </div>
   );
 }

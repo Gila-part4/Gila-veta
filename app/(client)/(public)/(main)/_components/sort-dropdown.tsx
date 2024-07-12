@@ -41,10 +41,13 @@ export default function SortDropDown() {
           <DropdownMenuRadioItem value="new" onClick={() => handleDropdown('latest')}>
             최신순
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="priceAsc" onClick={() => handleDropdown('priceAsc')}>
+          <DropdownMenuRadioItem value="review" onClick={() => handleDropdown('most_reviewed')}>
+            리뷰 많은 순
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="priceAsc" onClick={() => handleDropdown('price_asc')}>
             가격 높은 순
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="priceDesc" onClick={() => handleDropdown('priceDesc')}>
+          <DropdownMenuRadioItem value="priceDesc" onClick={() => handleDropdown('price_desc')}>
             가격 낮은 순
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
