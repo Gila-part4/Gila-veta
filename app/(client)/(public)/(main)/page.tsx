@@ -9,7 +9,6 @@ export default function Page({
 
   return (
     <div>
-      This is Home
       <ActicityContainer sort={sort} category={category} page={page} />
     </div>
   );
