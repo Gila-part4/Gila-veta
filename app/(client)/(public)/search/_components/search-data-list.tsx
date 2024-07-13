@@ -34,7 +34,7 @@ export default function SearchDataList({ searchData, keyword }: Props) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && isPending && hasMore) {
+        if (entries[0].isIntersecting && !isPending && hasMore) {
           loadMoreData();
         }
       },
