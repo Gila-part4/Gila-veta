@@ -24,7 +24,6 @@ export function MainCarousel({ activities }: Props) {
   // 리뷰 순으로 상위 6개 항목 정렬
   const sortedData = activities.sort((a, b) => b.reviewCount - a.reviewCount);
   const top6Data = sortedData.slice(0, 6);
-
   const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
