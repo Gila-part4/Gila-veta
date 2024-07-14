@@ -1,64 +1,20 @@
-'use client';
-
-import * as React from 'react';
-import Link from 'next/link';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Autoplay from 'embla-carousel-autoplay';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import CarouselText from '@/components/ui/carousel-text';
-import { ActivityItem } from '@/type/activities';
+import { getActivities } from '@/app/data/activities';
+import { CarouselCard } from './carousel-card';
 
 interface Props {
-  activities: ActivityItem[];
+  sort: string;
+  category: string;
+  page: string;
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export function MainCarousel({ activities }: Props) {
-  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+export default async function MainCarousel() {
+  const { activities } = await getActivities({
+    sort: 'most_reviewed',
+    page: 1,
+    size: 6,
+  });
 
-  return (
-    <Carousel
-      plugins={[plugin.current]}
-      className="m-40"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
-    >
-      <CarouselContent>
-        {activities.map((item) => (
-          <CarouselItem key={item.id}>
-            <Card>
-              <CardContent className="relative p-0">
-                <Link href="/" passHref>
-                  <div className="w-full h-60">
-                    {/* <Image
-                      src={item.bannerImageUrl}
-                      alt={item.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="w-full"
-                    /> */}
-                  </div>
-                  <CarouselText
-                    title={item.title}
-                    price={item.price}
-                    rating={item.rating}
-                    reviewCount={item.reviewCount}
-                  />
-                </Link>
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  );
+  console.log(activities);
+
+  return <CarouselCard activities={activities} />;
 }
