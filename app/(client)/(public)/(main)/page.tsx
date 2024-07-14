@@ -1,4 +1,4 @@
-import ActicityContainer from './_components/activity-container';
+import ActicityContainer from '@/app/(client)/(public)/(main)/_components/activity-container';
 
 export default function Page({
   searchParams,

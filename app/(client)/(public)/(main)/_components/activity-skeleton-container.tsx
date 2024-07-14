@@ -1,4 +1,4 @@
-import ActivitySkeleton from './activity-skeleton';
+import ActivitySkeleton from '@/app/(client)/(public)/(main)/_components/activity-skeleton';
 
 export default function ActivitySkeletonContainer() {
   return (

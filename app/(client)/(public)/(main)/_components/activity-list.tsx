@@ -1,5 +1,5 @@
 import { ActivityItem } from '@/type/activities';
-import ActivityCard from './activit-card';
+import ActivityCard from '@/app/(client)/(public)/(main)/_components/activit-card';
 
 interface Props {
   list: ActivityItem[];

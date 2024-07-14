@@ -1,8 +1,8 @@
 import { getActivities } from '@/app/data/activities';
-import ActivityPagination from './activity-pagination';
-import CategoryContainer from './category-container';
-import SortDropDown from './sort-dropdown';
-import ActivityList from './activity-list';
+import ActivityPagination from '@/app/(client)/(public)/(main)/_components/activity-pagination';
+import CategoryContainer from '@/app/(client)/(public)/(main)/_components/category-container';
+import SortDropDown from '@/app/(client)/(public)/(main)/_components/sort-dropdown';
+import ActivityList from '@/app/(client)/(public)/(main)/_components/activity-list';
 
 interface Props {
   sort: string;
