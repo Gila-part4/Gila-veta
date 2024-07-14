@@ -12,7 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { getActivities } from '@/app/data/activities';
 import CarouselText from '@/components/ui/carousel-text';
 import { ActivityItem } from '@/type/activities';
 
