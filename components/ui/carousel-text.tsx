@@ -1,23 +1,21 @@
-interface CarouselItem {
+import { Star } from 'lucide-react';
+
+interface Props {
   title: string;
   price: number;
   rating: number;
   reviewCount: number;
 }
 
-interface Props {
-  item: CarouselItem;
-}
-
-export default function CarouselText({ item }: Props) {
+export default function CarouselText({ title, price, rating, reviewCount }: Props) {
   return (
-    <div className="absolute top-4 w-full">
+    <div className="absolute left-4 bottom-4 w-full">
       <p>인기 경험 BEST 6</p>
-      <p>{item.title}</p>
-      <p>{`₩ ${item.price} / 인`}</p>
-      <div className="flex">
-        <p className="text-base">⭐️</p>
-        <p>{`${item.rating} (${item.reviewCount})`}</p>
+      <p>{title}</p>
+      <p>{`₩ ${price} / 인`}</p>
+      <div className="flex items-center">
+        <Star color="#FFC23D" size={20} />
+        <p className="ml-1">{`${rating} (${reviewCount})`}</p>
       </div>
     </div>
   );

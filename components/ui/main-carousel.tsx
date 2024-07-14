@@ -34,9 +34,9 @@ export function MainCarousel({ activities }: Props) {
         {activities.map((item) => (
           <CarouselItem key={item.id}>
             <Card>
-              <CardContent className="p-0">
+              <CardContent className="relative p-0">
                 <Link href="/" passHref>
-                  <div className="relative w-full h-60">
+                  <div className="w-full h-60">
                     {/* <Image
                       src={item.bannerImageUrl}
                       alt={item.title}
@@ -45,7 +45,12 @@ export function MainCarousel({ activities }: Props) {
                       className="w-full"
                     /> */}
                   </div>
-                  <CarouselText item={item} />
+                  <CarouselText
+                    title={item.title}
+                    price={item.price}
+                    rating={item.rating}
+                    reviewCount={item.reviewCount}
+                  />
                 </Link>
               </CardContent>
             </Card>
