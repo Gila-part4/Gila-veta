@@ -1,20 +1,29 @@
-'use client';
+import { getActivities } from '@/app/data/activities';
+import ActivityPagination from '@/app/(client)/(public)/(main)/_components/activity-pagination';
+import CategoryContainer from '@/app/(client)/(public)/(main)/_components/category-container';
+import SortDropDown from '@/app/(client)/(public)/(main)/_components/sort-dropdown';
+import ActivityList from '@/app/(client)/(public)/(main)/_components/activity-list';
 
-import { useSearchParams } from 'next/navigation';
-import ActivityPagination from './activity-pagination';
-import CategoryContainer from './category-container';
-import SortDropDown from './sort-dropdown';
+interface Props {
+  sort: string;
+  category: string;
+  page: string;
+}
 
-export default function ActicityContainer() {
-  const searchParams = useSearchParams();
-  const title = searchParams.get('category') || '전체';
-
+export default async function ActicityContainer({ sort, category, page = '1' }: Props) {
+  const { activities, totalCount } = await getActivities({
+    sort,
+    category,
+    page: Number(page),
+    size: 12,
+  });
   return (
     <div>
-      <p>{title}</p>
+      <p className="font-bold text-4xl">🏃‍♂️‍➡️ {category || '전체'}</p>
       <CategoryContainer />
       <SortDropDown />
-      <ActivityPagination totalCount={120} pageItemCount={12} />
+      <ActivityList list={activities} />
+      <ActivityPagination totalCount={totalCount} pageItemCount={12} />
     </div>
   );
 }
