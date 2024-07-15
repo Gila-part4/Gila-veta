@@ -27,7 +27,7 @@ export function UserButtonOptions({ imgUrl, username }: Props) {
       <DropdownMenuTrigger asChild className="outline-none">
         <Button variant={'ghost'} className="flex items-center gap-x-2 px-1">
           <Avatar>
-            <AvatarImage src={imgUrl} />
+            <AvatarImage src={imgUrl} className="object-cover" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <span>{username}</span>
