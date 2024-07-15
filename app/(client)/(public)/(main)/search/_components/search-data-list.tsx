@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef, useTransition, useCallback } from 'react';
-import SearchDataItem from '@/app/(client)/(public)/search/_components/search-data-item';
+import SearchDataItem from '@/app/(client)/(public)/(main)/search/_components/search-data-item';
 import { ActivityItem } from '@/type/activities';
 import { getActivities } from '@/app/data/activities';
 
