@@ -24,7 +24,7 @@ const publicAuth = async (req: NextRequest, token: boolean) => {
   }
 };
 
-const protectiedPageList = ['/mypage'];
+const protectiedPageList = ['/my-page'];
 const publicPageList = ['/login', '/register'];
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, consistent-return

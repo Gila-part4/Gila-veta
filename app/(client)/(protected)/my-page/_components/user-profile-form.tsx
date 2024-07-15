@@ -24,8 +24,8 @@ const formSchema = z
   .object({
     username: z.string().min(2).max(50),
     email: z.string().email(),
-    password: z.string().min(6),
-    confirmPassword: z.string().min(6),
+    password: z.string().min(8, { message: '비밀번호는 최소 8글자 입니다.' }),
+    confirmPassword: z.string(),
     profileImage: z.any().optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
