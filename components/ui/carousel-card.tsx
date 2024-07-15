@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+// import Image from 'next/image';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Autoplay from 'embla-carousel-autoplay';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,14 +22,16 @@ interface Props {
 
 // eslint-disable-next-line import/prefer-default-export
 export function CarouselCard({ activities }: Props) {
-  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
-
   return (
     <Carousel
-      plugins={[plugin.current]}
       className="m-40"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
+      plugins={[
+        Autoplay({
+          delay: 3000,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ]}
     >
       <CarouselContent>
         {activities.map((item) => (
@@ -40,9 +43,8 @@ export function CarouselCard({ activities }: Props) {
                     {/* <Image
                       src={item.bannerImageUrl}
                       alt={item.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="w-full"
+                      fill
+                      className="object-cover w-full h-full"
                     /> */}
                   </div>
                   <CarouselText
