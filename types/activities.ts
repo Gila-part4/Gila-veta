@@ -31,7 +31,7 @@ export interface Schedule {
   endTime: string;
 }
 
-export interface DetailActivity extends ActivityItem {
+export interface ActivityDetailResponse extends ActivityItem {
   subImageUrls: SubImage[];
   schedules: Schedule[];
 }
