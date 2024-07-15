@@ -1,3 +1,5 @@
+
+import MainCarousel from '@/components/ui/main-carousel';
 import ActicityContainer from '@/app/(client)/(public)/(main)/_components/activity-container';
 
 export default function Page({
@@ -9,7 +11,9 @@ export default function Page({
 
   return (
     <div>
+      <MainCarousel />
       <ActicityContainer sort={sort} category={category} page={page} />
     </div>
   );
 }
+
