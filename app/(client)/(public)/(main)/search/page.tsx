@@ -1,4 +1,4 @@
-import SearchDataList from '@/app/(client)/(public)/search/_components/search-data-list';
+import SearchDataList from '@/app/(client)/(public)/(main)/search/_components/search-data-list';
 import { getActivities } from '@/app/data/activities';
 
 export default async function Page({
