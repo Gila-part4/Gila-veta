@@ -18,3 +18,20 @@ export interface ActivityResponse {
   totalCount: number;
   activities: ActivityItem[];
 }
+
+export interface SubImage {
+  id: number;
+  imageUrl: string;
+}
+
+export interface Schedule {
+  id: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface DetailActivity extends ActivityItem {
+  subImageUrls: SubImage[];
+  schedules: Schedule[];
+}
