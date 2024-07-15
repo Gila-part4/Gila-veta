@@ -34,24 +34,24 @@ export function CarouselCard({ activities }: Props) {
       ]}
     >
       <CarouselContent>
-        {activities.map((item) => (
-          <CarouselItem key={item.id}>
+        {activities.map(({ id, title, price, rating, reviewCount }) => (
+          <CarouselItem key={id}>
             <Card>
               <CardContent className="relative p-0">
-                <Link href="/" passHref>
+                <Link href={`/detail/${id}`} passHref>
                   <div className="w-full h-60">
                     {/* <Image
-                      src={item.bannerImageUrl}
-                      alt={item.title}
+                      src={bannerImageUrl}
+                      alt={title}
                       fill
                       className="object-cover w-full h-full"
                     /> */}
                   </div>
                   <CarouselText
-                    title={item.title}
-                    price={item.price}
-                    rating={item.rating}
-                    reviewCount={item.reviewCount}
+                    title={title}
+                    price={price}
+                    rating={rating}
+                    reviewCount={reviewCount}
                   />
                 </Link>
               </CardContent>
