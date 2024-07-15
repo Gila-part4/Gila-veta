@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState, useRef, useTransition, useCallback } from 'react';
-import { getSearchData } from '@/app/data/get-search-data';
-import { SearchData } from '@/app/(client)/(public)/search/page';
 import SearchDataItem from '@/app/(client)/(public)/search/_components/search-data-item';
+import { ActivityItem } from '@/type/activities';
+import { getActivities } from '@/app/data/activities';
 
 interface Props {
-  searchData: SearchData[];
-  keyword: string | null;
+  searchData: ActivityItem[];
+  keyword: string;
 }
 
 export default function SearchDataList({ searchData, keyword }: Props) {
@@ -21,9 +21,9 @@ export default function SearchDataList({ searchData, keyword }: Props) {
     if (isPending) return; // 이미 로딩 중이면 아무 작업도 하지 않음
 
     startTransition(async () => {
-      const newData = await getSearchData({ page, keyword });
-      if (newData && newData.length > 0) {
-        setSearchDataList((prevData) => [...prevData, ...newData]);
+      const { activities } = await getActivities({ page, keyword, size: 10 });
+      if (activities && activities.length > 0) {
+        setSearchDataList((prevData) => [...prevData, ...activities]);
         setPage((prevPage) => prevPage + 1);
       } else {
         setHasMore(false);
@@ -56,7 +56,7 @@ export default function SearchDataList({ searchData, keyword }: Props) {
   return (
     <div>
       <div className="flex flex-col gap-4">
-        {searchDataList.map((data: SearchData) => (
+        {searchDataList.map((data) => (
           <SearchDataItem
             key={data.id}
             title={data.title}
