@@ -6,17 +6,17 @@ export default function ReviewItem({ item }: { item: Review }) {
   const createdAt = dayjs(item.createdAt).format('YYYY-MM-DD');
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 min-h-20 pb-6 pt-6 border-b-2 max-w-[790px]">
       <div className="h-11 w-11 relative bg-slate-400 rounded-full">
         {/* <Image src={item.user.profileImageUrl} alt="유저 이미지" fill /> */}
       </div>
-      <div>
+      <div className="flex flex-col gap-2 ">
         <div className="flex gap-2">
-          <p className="text-base">{item.user.nickname}</p>
+          <p className="text-base font-semibold">{item.user.nickname}</p>
           <p>|</p>
-          <p>{createdAt}</p>
+          <p className="text-sm leading-6 text-slate-500">{createdAt}</p>
         </div>
-        <div>{item.content}</div>
+        <div className="break-all w-[500px] ">{item.content}</div>
       </div>
     </div>
   );

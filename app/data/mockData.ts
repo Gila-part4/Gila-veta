@@ -11,7 +11,8 @@ export const mockData = {
       user: testUser,
       activityId: 1659,
       rating: 4,
-      content: '테스트',
+      content:
+        'asdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsef',
       createdAt: '2024-07-15T07:11:02.293Z',
       updatedAt: '2024-07-15T07:11:02.293Z',
     },
@@ -108,7 +109,8 @@ export const reviewsMock = {
       user: testUser,
       activityId: 1659,
       rating: 4,
-      content: '테스트',
+      content:
+        'asdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsefasdfasefasefasefsaefsaefasefsef',
       createdAt: '2024-07-15T07:11:02.293Z',
       updatedAt: '2024-07-15T07:11:02.293Z',
     },
