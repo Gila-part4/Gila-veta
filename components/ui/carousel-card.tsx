@@ -21,14 +21,16 @@ interface Props {
 
 // eslint-disable-next-line import/prefer-default-export
 export function CarouselCard({ activities }: Props) {
-  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
-
   return (
     <Carousel
-      plugins={[plugin.current]}
       className="m-40"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
+      plugins={[
+        Autoplay({
+          delay: 3000,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ]}
     >
       <CarouselContent>
         {activities.map((item) => (
