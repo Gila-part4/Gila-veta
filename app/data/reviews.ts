@@ -9,7 +9,7 @@ interface Props {
 
 // 함수 추가시 삭제 예정
 // eslint-disable-next-line import/prefer-default-export
-export const getActivities = async ({
+export const getReviews = async ({
   page = 1,
   size,
   activityId,
