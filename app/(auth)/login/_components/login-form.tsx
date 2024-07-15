@@ -64,12 +64,13 @@ export default function LoginForm() {
       password,
       redirect: false, // 로그인했을때 페이지 리다이렉션 제거
     });
-    if (result?.ok) {
-      router.replace('/');
-    } else if (result?.error) {
-      // next-auth에서 던져준 에러를 받아서 사용함
+
+    if (!result?.ok) {
       toast.error(result?.error);
+      return;
     }
+    router.push('/');
+    router.refresh();
   }; // 팀 컨벤션은 handle이지만 라이브러리 코드와 구분을 위해 on으로 만들었습니다.
 
   return (
