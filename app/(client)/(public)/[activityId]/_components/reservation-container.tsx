@@ -1,32 +1,29 @@
-export default function ReservationContainer() {
+import { Suspense } from 'react';
+import { ActivityDetailResponse } from '@/types/activities';
+import ReservationForm from '@/app/(client)/(public)/[activityId]/_components/reservation-form';
+import CalendarForm from '@/app/(client)/(public)/[activityId]/_components/calendar-form';
+
+interface Props {
+  data: ActivityDetailResponse;
+  activityId: number;
+}
+
+export default function ReservationContainer({ data, activityId }: Props) {
+  const { price, schedules } = data;
+
   return (
     <div>
-      <h1>
-        <b>₩ price</b>/ 인
-      </h1>
-      <div>
-        <div>
-          <h2>날짜</h2>
-          <div>calendar</div>
-        </div>
-        <div>
-          <h3>예약 가능한 시간</h3>
-          <ul>
-            <li>available time</li>
-          </ul>
-        </div>
+      <div className="border-b">
+        <h1>
+          <b>₩ {price}</b> / 인
+        </h1>
       </div>
-      <div>
-        <h2>참여 인원 수</h2>
-        <form>
-          <input type="number" />
-          <button type="submit">예약하기</button>
-        </form>
-      </div>
-      <div>
-        <h2>총 합계</h2>
-        <p>₩ total price</p>
-      </div>
+      <Suspense>
+        <CalendarForm />
+      </Suspense>
+      <Suspense>
+        <ReservationForm totalSchedule={schedules} activityId={activityId} />
+      </Suspense>
     </div>
   );
 }
