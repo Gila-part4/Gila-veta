@@ -4,7 +4,6 @@ import { mockData } from '@/app/data/mockData';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -31,7 +30,7 @@ export default function ReviewModal({ totalCount, list, activityId }: Props) {
     if (isPending) return; // 이미 로딩 중이면 아무 작업도 하지 않음
 
     startTransition(async () => {
-      const { reviews } = await getReviews({ page, size: 3, activityId: Number(activityId) });
+      const { reviews } = await getReviews({ page, size: 4, activityId: Number(activityId) });
       if (reviews && reviews.length > 0) {
         setReviewList((prevData) => [...prevData, ...reviews]);
         setPage((prevPage) => prevPage + 1);
@@ -42,6 +41,9 @@ export default function ReviewModal({ totalCount, list, activityId }: Props) {
   }, [activityId, isPending, page]);
 
   useEffect(() => {
+    if (totalCount >= list.length) {
+      return () => null;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !isPending && hasMore) {
@@ -61,23 +63,30 @@ export default function ReviewModal({ totalCount, list, activityId }: Props) {
         observer.unobserve(currentLoaderRef);
       }
     };
-  }, [hasMore, loaderRef, isPending, loadMoreData]);
+  }, [hasMore, loaderRef, isPending, loadMoreData, totalCount, list.length]);
 
   const mock = mockData;
 
   return (
     <Dialog>
       <DialogTrigger className="w-52 py-3 border rounded-md">모든 리뷰보기</DialogTrigger>
-      <DialogContent className="w-[700px]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl">후기 {totalCount}개</DialogTitle>
-          <DialogDescription>평균 {mock.averageRating}</DialogDescription>
-        </DialogHeader>
-        <div className="overflow-scroll h-96">
-          {mock.reviews.map((item) => (
-            <ReviewItem key={item.id} item={item} />
-          ))}
-          <div ref={loaderRef} />
+      <DialogContent className="w-fit">
+        <div className="flex">
+          <div className="w-40 pr-6 flex flex-col justify-center items-center">
+            <DialogHeader className="flex flex-col justify-center items-center">
+              <p className="text-7xl">⭐️</p>
+              <DialogTitle className="text-7xl">{mock.averageRating}</DialogTitle>
+            </DialogHeader>
+          </div>
+          <div className="flex flex-col gap-2">
+            <DialogTitle className="text-xl">후기 {totalCount}개</DialogTitle>
+            <div className="overflow-y-scroll h-96">
+              {mock.reviews.map((item) => (
+                <ReviewItem key={item.id} item={item} />
+              ))}
+              <div ref={loaderRef} />
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
