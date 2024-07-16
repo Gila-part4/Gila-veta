@@ -1,7 +1,6 @@
 import { Review } from '@/type/reviews';
 import dayjs from 'dayjs';
 import { Star } from 'lucide-react';
-import Image from 'next/image';
 
 export default function ReviewItem({ item }: { item: Review }) {
   const createdAt = dayjs(item.createdAt).format('YYYY-MM-DD');

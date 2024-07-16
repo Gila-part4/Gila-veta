@@ -11,16 +11,17 @@ import {
 import { Review } from '@/type/reviews';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { getReviews } from '@/app/data/reviews';
-import ReviewItem from './review-item';
 import { Star } from 'lucide-react';
+import ReviewItem from './review-item';
 
 interface Props {
   totalCount: number;
   list: Review[];
   activityId: string;
+  averageMessage?: string;
 }
 
-export default function ReviewModal({ totalCount, list, activityId }: Props) {
+export default function ReviewModal({ totalCount, list, activityId, averageMessage }: Props) {
   const [reviewList, setReviewList] = useState(list);
   const [isPending, startTransition] = useTransition();
   const [page, setPage] = useState(2);
@@ -77,6 +78,7 @@ export default function ReviewModal({ totalCount, list, activityId }: Props) {
             <DialogHeader className="flex flex-col justify-center items-center">
               <Star color="#FFC23D" size={80} fill="#FFC23D" />
               <DialogTitle className="text-7xl">{mock.averageRating}</DialogTitle>
+              <DialogTitle className="text-xl">{averageMessage}</DialogTitle>
             </DialogHeader>
           </div>
           <div className="flex flex-col gap-2">
