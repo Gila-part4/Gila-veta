@@ -29,7 +29,7 @@ interface ActivityParams {
   activityId: number;
 }
 
-export const getActivities = async ({ activityId }: ActivityParams) => {
+export const getActivityDetail = async ({ activityId }: ActivityParams) => {
   const data = await fetcher<DetailActivity>(`/activities/${activityId}`);
   return data;
 };

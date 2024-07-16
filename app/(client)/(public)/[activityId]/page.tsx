@@ -1,4 +1,4 @@
-import { getActivities } from '@/app/data/activities';
+import { getActivityDetail } from '@/app/data/activities';
 import DetailContent from '@/app/(client)/(public)/[activityId]/_components/detail-content';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 export default async function Page({ params }: Props) {
   const id = Number(params.activityId);
 
-  const data = await getActivities({
+  const data = await getActivityDetail({
     activityId: id,
   });
 

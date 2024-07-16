@@ -1,4 +1,3 @@
-// import { ActivityItem } from '@/type/activities';
 import { Star, MapPin } from 'lucide-react';
 
 interface Props {
