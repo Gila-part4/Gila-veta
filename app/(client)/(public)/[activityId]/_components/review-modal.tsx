@@ -12,6 +12,7 @@ import { Review } from '@/type/reviews';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { getReviews } from '@/app/data/reviews';
 import ReviewItem from './review-item';
+import { Star } from 'lucide-react';
 
 interface Props {
   totalCount: number;
@@ -74,7 +75,7 @@ export default function ReviewModal({ totalCount, list, activityId }: Props) {
         <div className="flex">
           <div className="w-40 pr-6 flex flex-col justify-center items-center">
             <DialogHeader className="flex flex-col justify-center items-center">
-              <p className="text-7xl">⭐️</p>
+              <Star color="#FFC23D" size={80} fill="#FFC23D" />
               <DialogTitle className="text-7xl">{mock.averageRating}</DialogTitle>
             </DialogHeader>
           </div>
