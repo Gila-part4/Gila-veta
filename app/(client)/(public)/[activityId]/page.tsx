@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <div>
       상세페이지
-      <ReviewContainer activityId="1659" />
+      <ReviewContainer activityId={1659} />
     </div>
   );
 }

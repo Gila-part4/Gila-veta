@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 import ReviewItem from './review-item';
 import ReviewModal from './review-modal';
 
-export default async function ReviewContainer({ activityId }: { activityId: string }) {
+export default async function ReviewContainer({ activityId }: { activityId: number }) {
   const review = reviewsMock;
   const averageMessage = RATING.find((item) => item.rating === Math.floor(review.averageRating));
   return (

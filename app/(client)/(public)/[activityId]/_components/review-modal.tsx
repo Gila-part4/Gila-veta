@@ -17,7 +17,7 @@ import ReviewItem from './review-item';
 interface Props {
   totalCount: number;
   list: Review[];
-  activityId: string;
+  activityId: number;
   averageMessage?: string;
 }
 
@@ -32,7 +32,7 @@ export default function ReviewModal({ totalCount, list, activityId, averageMessa
     if (isPending) return; // 이미 로딩 중이면 아무 작업도 하지 않음
 
     startTransition(async () => {
-      const { reviews } = await getReviews({ page, size: 4, activityId: Number(activityId) });
+      const { reviews } = await getReviews({ page, size: 4, activityId });
       if (reviews && reviews.length > 0) {
         setReviewList((prevData) => [...prevData, ...reviews]);
         setPage((prevPage) => prevPage + 1);
