@@ -30,7 +30,6 @@ export default function KakaoMap({ address }: Props) {
       mapScript.async = true;
       mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=e415c78ee2db9fc2249f1227e3fb0c2f&autoload=false&libraries=services,clusterer,drawing`;
       document.head.appendChild(mapScript);
-
       mapScript.addEventListener('load', onLoadKakaoMap);
 
       return () => {

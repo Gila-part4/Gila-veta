@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
+import { SubImage } from '@/type/activities';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
@@ -10,7 +11,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { SubImage } from '@/type/activities';
 
 interface Props {
   carouselImagesUrl: SubImage[];

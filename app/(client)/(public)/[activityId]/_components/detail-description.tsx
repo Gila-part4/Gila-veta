@@ -9,7 +9,6 @@ interface Props {
 export default function DetailDescription({ description, address }: Props) {
   return (
     <div>
-      {/* <div className="border-b border-gray-100"></div> */}
       <p className="text-gray-900 text-lg font-bold leading-26">체험 설명</p>
       <p className="text-gray-800 text-base font-normal leading-26">{description}</p>
       <KakaoMap address={address} />
