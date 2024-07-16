@@ -35,3 +35,14 @@ export interface ActivityDetailResponse extends ActivityItem {
   subImageUrls: SubImage[];
   schedules: Schedule[];
 }
+
+export interface AvailableTime {
+  endTime: string;
+  startTime: string;
+  id: number;
+}
+
+export interface AvailableSchedule {
+  date: string;
+  times: AvailableTime[];
+}
