@@ -32,6 +32,6 @@ export interface Schedule {
 }
 
 export interface DetailActivity extends ActivityItem {
-  subImageUrls: SubImage[];
+  subImages: SubImage[];
   schedules: Schedule[];
 }

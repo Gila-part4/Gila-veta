@@ -1,4 +1,4 @@
-import { getActivities } from '@/app/data/activities';
+import { getActivitieList } from '@/app/data/activities';
 import ActivityPagination from '@/app/(client)/(public)/(main)/_components/activity-pagination';
 import CategoryContainer from '@/app/(client)/(public)/(main)/_components/category-container';
 import SortDropDown from '@/app/(client)/(public)/(main)/_components/sort-dropdown';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default async function ActicityContainer({ sort, category, page = '1' }: Props) {
-  const { activities, totalCount } = await getActivities({
+  const { activities, totalCount } = await getActivitieList({
     sort,
     category,
     page: Number(page),

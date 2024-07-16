@@ -14,7 +14,7 @@ export default function CarouselText({ title, price, rating, reviewCount }: Prop
       <p>{title}</p>
       <p>{`₩ ${price} / 인`}</p>
       <div className="flex items-center">
-        <Star color="#FFC23D" size={20} />
+        <Star color="#FFC23D" size={20} fill="#FFC23D" />
         <p className="ml-1">{`${rating} (${reviewCount})`}</p>
       </div>
     </div>
