@@ -1,8 +1,8 @@
-import { getActivities } from '@/app/data/activities';
+import { getActivityList } from '@/app/data/activities';
 import { CarouselCard } from './carousel-card';
 
 export default async function MainCarousel() {
-  const { activities } = await getActivities({
+  const { activities } = await getActivityList({
     sort: 'most_reviewed',
     page: 1,
     size: 6,
