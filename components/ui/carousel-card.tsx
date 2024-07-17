@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Autoplay from 'embla-carousel-autoplay';
 import { Card, CardContent } from '@/components/ui/card';
@@ -33,17 +34,17 @@ export function CarouselCard({ activities }: Props) {
       ]}
     >
       <CarouselContent>
-        {activities.map(({ id, title, price, rating, reviewCount }) => (
+        {activities.map(({ id, title, price, rating, reviewCount, bannerImageUrl }) => (
           <CarouselItem key={id}>
             <Card>
               <CardContent className="relative p-0">
                 <Link href={`/${id}`} passHref>
                   <div className="w-full h-60">
                     {/* <Image
-                        src={bannerImageUrl}
-                        alt={title}
-                        fill
-                        className="object-cover w-full h-full"
+                      src={bannerImageUrl}
+                      alt={title}
+                      fill
+                      className="object-cover w-full h-full"
                     /> */}
                   </div>
                   <CarouselText
