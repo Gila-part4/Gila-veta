@@ -9,7 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { createUrl } from '@/lib/utils';
+import { createUrl } from '@/util/createUrl';
 import { useSearchParams } from 'next/navigation';
 
 interface Props {

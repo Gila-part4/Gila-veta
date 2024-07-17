@@ -1,4 +1,4 @@
-import { ActivityItem } from '@/type/activities';
+import { ActivityItem } from '@/types/activities';
 import Link from 'next/link';
 
 interface Props {

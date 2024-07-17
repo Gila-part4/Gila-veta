@@ -1,4 +1,4 @@
-import { ActivityItem } from '@/type/activities';
+import { ActivityItem } from '@/types/activities';
 import ActivityCard from '@/app/(client)/(public)/(main)/_components/activit-card';
 
 interface Props {

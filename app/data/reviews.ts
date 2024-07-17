@@ -1,5 +1,5 @@
 import { fetcher } from '@/lib/fetcher';
-import { ReviewResponse } from '@/type/reviews';
+import { ReviewResponse } from '@/types/reviews';
 
 interface Props {
   page: number;

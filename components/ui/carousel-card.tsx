@@ -13,7 +13,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import CarouselText from '@/components/ui/carousel-text';
-import { ActivityItem } from '@/type/activities';
+import { ActivityItem } from '@/types/activities';
 
 interface Props {
   activities: ActivityItem[];

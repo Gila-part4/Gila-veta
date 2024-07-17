@@ -1,7 +1,7 @@
 'use server';
 
 import { api } from '@/lib/utils';
-import { User } from '@/type/user';
+import { User } from '@/types/user';
 import axios from 'axios';
 
 interface Props {

@@ -1,4 +1,4 @@
-import { Review } from '@/type/reviews';
+import { Review } from '@/types/reviews';
 import ReviewItem from './review-item';
 
 export default function ReviewList({ reviewList }: { reviewList: Review[] }) {

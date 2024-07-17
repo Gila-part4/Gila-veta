@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Review } from '@/type/reviews';
+import { Review } from '@/types/reviews';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { getReviews } from '@/app/data/reviews';
 import YellowStart from '@/components/ui/yellow-star';

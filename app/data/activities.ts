@@ -1,7 +1,7 @@
 'use server';
 
 import { fetcher } from '@/lib/fetcher';
-import { ActivityResponse } from '@/type/activities';
+import { ActivityResponse } from '@/types/activities';
 
 interface Props {
   keyword?: string;

@@ -2,7 +2,6 @@ import { authOption } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
 import { type ClassValue, clsx } from 'clsx';
 import { getServerSession } from 'next-auth';
-import { ReadonlyURLSearchParams } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -32,10 +31,3 @@ try {
 } catch (error) {
   /* empty */
 }
-
-export const createUrl = (pathname: string, params: URLSearchParams | ReadonlyURLSearchParams) => {
-  const paramsString = params.toString();
-  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
-
-  return `${pathname}${queryString}`;
-};

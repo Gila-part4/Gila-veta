@@ -1,5 +1,5 @@
 import YellowStart from '@/components/ui/yellow-star';
-import { Review } from '@/type/reviews';
+import { Review } from '@/types/reviews';
 import dayjs from 'dayjs';
 
 export default function ReviewItem({ item }: { item: Review }) {

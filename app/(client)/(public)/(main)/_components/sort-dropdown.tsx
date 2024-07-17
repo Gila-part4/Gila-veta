@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { createUrl } from '@/lib/utils';
+import { createUrl } from '@/util/createUrl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 

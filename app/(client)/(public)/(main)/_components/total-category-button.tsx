@@ -1,6 +1,6 @@
 'use client';
 
-import { createUrl } from '@/lib/utils';
+import { createUrl } from '@/util/createUrl';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
