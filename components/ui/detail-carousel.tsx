@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import Autoplay from 'embla-carousel-autoplay';
 import { SubImage } from '@/type/activities';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,10 +14,11 @@ import {
 } from '@/components/ui/carousel';
 
 interface Props {
-  carouselImagesUrl: SubImage[];
+  subImages: SubImage[];
 }
 
-export function DetailCarousel({ carouselImagesUrl }: Props) {
+// eslint-disable-next-line import/prefer-default-export
+export function DetailCarousel({ subImages }: Props) {
   return (
     <Carousel
       className="mt-9 mb-9"
@@ -29,12 +31,12 @@ export function DetailCarousel({ carouselImagesUrl }: Props) {
       ]}
     >
       <CarouselContent>
-        {carouselImagesUrl.map(({ id, imageUrl }) => (
+        {subImages.map(({ id, imageUrl }) => (
           <CarouselItem key={id}>
             <Card>
               <CardContent className="relative p-0">
                 <div className="w-full h-96">
-                  <img src={imageUrl} alt="이미지" />
+                  {/* <Image src={imageUrl} alt="이미지" fill /> */}
                 </div>
               </CardContent>
             </Card>
