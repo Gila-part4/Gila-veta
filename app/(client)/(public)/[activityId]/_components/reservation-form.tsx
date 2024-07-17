@@ -20,28 +20,30 @@ import { z } from 'zod';
 
 interface Props {
   activityId: number;
+  price: number;
 }
 
 const FormSchema = z.object({
   availableTimeId: z.number(),
-  headCount: z.string(),
+  headCount: z.number(),
 });
 
-export default function ReservationForm({ activityId }: Props) {
+export default function ReservationForm({ activityId, price }: Props) {
   const searchParams = useSearchParams();
   const year = searchParams.get('year');
   const month = searchParams.get('month');
   const [schedules, setSchedules] = useState<AvailableTime[]>([]);
+  const [currentHeadCount, setCurrentHeadCount] = useState<number>(1);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       availableTimeId: 0,
-      headCount: '',
+      headCount: 1,
     },
   });
 
-  const onSubmit = (data: { availableTimeId: number; headCount: string }) => {
+  const onSubmit = (data: { availableTimeId: number; headCount: number }) => {
     return data;
   };
 
@@ -95,20 +97,30 @@ export default function ReservationForm({ activityId }: Props) {
           name="headCount"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>예약 인원 수</FormLabel>
+              <FormLabel htmlFor="headCount">예약 인원 수</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="how peaple" {...field} />
+                <Input
+                  id="headCount"
+                  type="number"
+                  placeholder="how peaple"
+                  value={field.value}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value, 10);
+                    field.onChange(e);
+                    setCurrentHeadCount(value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div>
-          <h2>총 합계</h2>
-          <p>₩ total price</p>
-        </div>
         <Button type="submit">예약하기</Button>
       </form>
+      <div>
+        <h2>총 합계</h2>
+        <p>₩ {price * currentHeadCount}</p>
+      </div>
     </Form>
   );
 }
