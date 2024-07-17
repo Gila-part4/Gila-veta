@@ -12,7 +12,7 @@ import { Review } from '@/type/reviews';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { getReviews } from '@/app/data/reviews';
 import { Star } from 'lucide-react';
-import ReviewItem from './review-item';
+import ReviewList from './review-List';
 
 interface Props {
   totalCount: number;
@@ -84,9 +84,7 @@ export default function ReviewModal({ totalCount, list, activityId, averageMessa
           <div className="flex flex-col gap-2">
             <DialogTitle className="text-xl">후기 {totalCount}개</DialogTitle>
             <div className="overflow-y-scroll h-96">
-              {mock.reviews.map((item) => (
-                <ReviewItem key={item.id} item={item} />
-              ))}
+              <ReviewList reviewList={mock.reviews} />
               <div ref={loaderRef} />
             </div>
           </div>
