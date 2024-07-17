@@ -20,6 +20,7 @@ export default function DetailContent({
 }: Props) {
   return (
     <div>
+      <div className="w-full h-44">{/* <Image src={bannerImageUrl} alt="이미지" fill /> */}</div>
       <div className="mt-10 mr-40 ml-40">
         <DetailTitle
           title={title}
