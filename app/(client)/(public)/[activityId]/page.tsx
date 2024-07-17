@@ -14,7 +14,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <div>
-      <DetailContent data={data} />
+      <DetailContent {...data} />
     </div>
   );
 }
