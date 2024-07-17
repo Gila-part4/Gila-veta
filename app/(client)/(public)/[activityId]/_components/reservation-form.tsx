@@ -1,5 +1,6 @@
 'use client';
 
+import { reserve } from '@/app/action/reserve';
 import { getAvailableSchedule } from '@/app/data/activities';
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 interface Props {
@@ -24,7 +26,7 @@ interface Props {
 }
 
 const FormSchema = z.object({
-  availableTimeId: z.number(),
+  scheduleId: z.number(),
   headCount: z.number(),
 });
 
@@ -38,13 +40,18 @@ export default function ReservationForm({ activityId, price }: Props) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      availableTimeId: 0,
+      scheduleId: 0,
       headCount: 1,
     },
   });
 
-  const onSubmit = (data: { availableTimeId: number; headCount: number }) => {
-    return data;
+  const onSubmit = async ({ scheduleId, headCount }: { scheduleId: number; headCount: number }) => {
+    const action = await reserve({ activityId, scheduleId, headCount });
+    if (!action.success) {
+      toast.error(action.message);
+      return;
+    }
+    toast.success(action.message);
   };
 
   const fetchSchedule = useCallback(async () => {
@@ -64,7 +71,7 @@ export default function ReservationForm({ activityId, price }: Props) {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="availableTimeId"
+          name="scheduleId"
           render={({ field }) => (
             <FormItem>
               <FormLabel>예약 가능한 시간</FormLabel>
@@ -106,7 +113,7 @@ export default function ReservationForm({ activityId, price }: Props) {
                   value={field.value}
                   onChange={(e) => {
                     const value = parseInt(e.target.value, 10);
-                    field.onChange(e);
+                    field.onChange(value);
                     setCurrentHeadCount(value);
                   }}
                 />

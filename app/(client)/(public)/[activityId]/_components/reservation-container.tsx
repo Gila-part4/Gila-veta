@@ -18,7 +18,7 @@ export default async function ReservationContainer({ data, activityId }: Props) 
         </h1>
       </div>
       <CalendarForm />
-      <ReservationForm activityId={activityId} />
+      <ReservationForm activityId={activityId} price={price} />
     </div>
   );
 }
