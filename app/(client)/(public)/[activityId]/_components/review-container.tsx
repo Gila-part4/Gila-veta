@@ -1,6 +1,6 @@
 import { reviewsMock } from '@/app/data/mockData';
 import { RATING } from '@/constants';
-import { Star } from 'lucide-react';
+import YellowStart from '@/components/ui/yellow-star';
 import ReviewModal from './review-modal';
 import ReviewList from './review-List';
 
@@ -14,7 +14,7 @@ export default async function ReviewContainer({ activityId }: { activityId: numb
       <div>후기</div>
       <div className="flex gap-4">
         <div className="flex items-center gap-2">
-          <Star color="#FFC23D" size={50} fill="#FFC23D" />
+          <YellowStart size={50} />
           <p className="text-5xl">{reviewData.averageRating}</p>
         </div>
         <div className="flex flex-col justify-center">

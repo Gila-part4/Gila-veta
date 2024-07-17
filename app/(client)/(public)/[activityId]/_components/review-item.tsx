@@ -1,6 +1,6 @@
+import YellowStart from '@/components/ui/yellow-star';
 import { Review } from '@/type/reviews';
 import dayjs from 'dayjs';
-import { Star } from 'lucide-react';
 
 export default function ReviewItem({ item }: { item: Review }) {
   const createdAt = dayjs(item.createdAt).format('YYYY-MM-DD');
@@ -15,7 +15,7 @@ export default function ReviewItem({ item }: { item: Review }) {
           <p className="text-base font-semibold">{item.user.nickname}</p>
           <p>|</p>
           <div className="flex items-center gap-1">
-            <Star color="#FFC23D" size={15} fill="#FFC23D" />
+            <YellowStart size={15} />
             {item.rating}
           </div>
           <p className="text-xs text-end text-slate-500">{createdAt}</p>
