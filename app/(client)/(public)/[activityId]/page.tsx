@@ -1,4 +1,4 @@
-import { getActivityDetail } from '@/app/data/activities';
+import { getActivityDetail } from '@/app/data/detail';
 import DetailContent from '@/app/(client)/(public)/[activityId]/_components/detail-content';
 
 interface Props {

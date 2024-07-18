@@ -1,7 +1,7 @@
 'use server';
 
 import { fetcher } from '@/lib/fetcher';
-import { ActivityResponse, DetailActivity } from '@/type/activities';
+import { ActivityResponse } from '@/type/activities';
 
 interface Queries {
   keyword?: string;
@@ -22,14 +22,5 @@ export const getActivitieList = async ({
 }: Queries): Promise<ActivityResponse> => {
   const query = `?method=offset${category ? `&category=${category}` : ''}${keyword ? `&keyword=${keyword}` : ''}${sort ? `&sort=${sort}` : ''}&page=${page}&size=${size}`;
   const data = await fetcher<ActivityResponse>(`/activities${query}`);
-  return data;
-};
-
-interface ActivityParams {
-  activityId: number;
-}
-
-export const getActivityDetail = async ({ activityId }: ActivityParams) => {
-  const data = await fetcher<DetailActivity>(`/activities/${activityId}`);
   return data;
 };
